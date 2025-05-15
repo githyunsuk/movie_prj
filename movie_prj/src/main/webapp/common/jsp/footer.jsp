@@ -40,13 +40,13 @@
                 </dl>
                 <dl class="company_list">
                     <dt>호스팅사업자</dt>
-                    <dd>CJ올리브네트웍스</dd>
+                    <dd>SIST쌍용네트웍스</dd>
                     <dt>개인정보보호 책임자</dt>
                     <dd>주현석</dd>
                     <dt>대표이메일</dt>
-                    <dd>cjcgvmaster@cj.net</dd>
+                    <dd>yeonflix@naver.com</dd>
                 </dl>
-                <p class="copyright">© CJ CGV. All Rights Reserved</p>
+                <p class="copyright">© YEONFLIX. All Rights Reserved</p>
             </section>
 
             <section class="familysite">

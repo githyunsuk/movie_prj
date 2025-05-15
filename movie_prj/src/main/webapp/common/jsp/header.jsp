@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="headerTop">
-	<h1 class="logo"><a href=""><img src="http://localhost/movie_prj/common/img/logo.png" alt=""></a></h1>
+	<h1 class="logo"><a href="http://localhost/movie_prj/index.jsp"><img src="http://localhost/movie_prj/common/img/logo.png" alt=""></a></h1>
  	<div class="member">
 		<ul class=login_menu>
 		<%
@@ -37,7 +37,7 @@
 	<ul class="nav_menu">
 		<li><a href="">영화</a></li>
 		<li><a href="">극장</a></li>
-		<li><a href=""><strong>예매</strong></a></li>
+		<li><a href="http://localhost/movie_prj/userpage/reservation.jsp"><strong>예매</strong></a></li>
 	</ul>
 
 	<div class="search_wrap">

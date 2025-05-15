@@ -1,0 +1,264 @@
+/*main */
+main {
+	padding-top: 30px;
+	width: 980px;
+	margin: 0 auto;
+}
+
+/*main -section-schedule */
+.schedule {
+	margin-top: 50px;
+	display: flex;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.timetable {
+	width: 800px;
+	border-top: 3px solid #241d1e;
+	position: relative;
+}
+
+.date {
+	position: relative;
+	padding: 12px 0 8px 0;
+	height: 106px;
+	box-sizing: border-box;
+}
+
+.date_list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn {
+	width: 51px;
+	height: 19px;
+}
+
+.day {
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+	font-size: 12px;
+}
+
+.day>li {
+	width: 74px;
+	height: 48px;
+}
+
+.day_list {
+	display: flex;
+	justify-content: space-between;
+	padding: 3px;
+	border: 2px solid transparent;
+	color: #666;
+}
+
+.day_list.on {
+	color: #000;
+	border: 2px solid #000;
+	border-radius: 5px;
+}
+
+.day span {
+	margin-top: 3px;
+	text-align: center;
+	line-height: 0.9rem;
+}
+
+.day strong {
+	font-size: 32px;
+	font-weight: 500;
+}
+
+.desc {
+	position: absolute;
+	right: 0;
+	bottom: 10px;
+	display: flex;
+}
+
+.desc li {
+	background: url("../img/sub/theater/sprite_icon.png");
+	font-size: 13px;
+	background-position: 0 -158px;
+	padding-left: 20px;
+	margin-right: 10px;
+	font-weight: 600;
+}
+
+.btn {
+	margin-top: 10px;
+}
+
+.btn_prev {
+	background: url("../img/sub/theater/sprite_btn.png");
+	background-position: -117px -174px;
+}
+
+.btn_next {
+	background: url("../img/sub/theater/sprite_btn.png");
+	background-position: -117px -155px;
+}
+
+.grade_popup {
+	position: absolute;
+	top: 110px;
+	right: 20px;
+	margin-top: 5px;
+	background-color: #f6f6f4;
+	color: #333;
+	border: 5px solid #333;
+	z-index: 8;
+	display: none;
+}
+
+.grade_tit {
+	padding: 13px;
+	background-color: #333;
+	color: #f2f0e5;
+	font-weight: 600;
+	border: 1px solid #f2f0e5;
+	font-size: 22px;
+	padding-left: 14px;
+}
+
+h5 {
+	display: flex;
+	justify-content: space-between;
+}
+
+.grade_close {
+	width: 18px;
+	height: 20px;
+	display: inline-block;
+	text-indent: -999em;
+	background: url("../img/sub/theater/sprite_btn.png") no-repeat -72px
+		-62px;
+}
+
+.grade_txt {
+	padding: 35px 40px 40px 40px;
+	font-size: 12px;
+	line-height: 1.3em;
+	text-align: left;
+	border-top: 5px solid #333;
+}
+
+thead th {
+	padding: 7px 0 5px 10px;
+	background-color: #e2e2e0;
+	font-size: 11px;
+}
+
+tbody th {
+	font-weight: 800;
+	margin-left: 14px;
+	vertical-align: middle;
+	padding: 14px 30px 14px 10px;
+}
+
+tbody th img {
+	margin-right: 6px;
+	vertical-align: middle;
+}
+
+tr {
+	border-bottom: 1px solid #d6d6cc;
+}
+
+td {
+	vertical-align: middle;
+	color: #666;
+	padding: 14px 30px 14px 10px;
+	border-left: 1px solid #d6d6cc;
+	line-height: 1.5em;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	padding: 20px;
+}
+
+#container {
+	min-height: 650px;
+	margin-top: 30px;
+	margin-left: 20px
+}
+
+.movie-item {
+	border-bottom: 1px solid #474746;
+}
+
+.movie-info {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.rating {
+	background-color: #f60;
+	color: white;
+	font-weight: bold;
+	padding: 2px 5px;
+	border-radius: 3px;
+	margin-right: 8px;
+}
+
+.status {
+	color: #007bff;
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.meta {
+	color: #555;
+}
+
+.theater-block {
+	margin-top: 15px;
+}
+
+.theater-info {
+	font-size: 14px;
+	color: #333;
+	margin-bottom: 5px;
+}
+
+.showtimes {
+	display: flex;
+	gap: 10px;
+}
+
+.showtime {
+	border: 1px solid #ccc;
+	padding: 10px;
+	text-align: center;
+	min-width: 70px;
+	font-size: 14px;
+}
+
+.showtime span {
+	display: block;
+	margin-top: 4px;
+	font-size: 12px;
+	color: #007bff;
+}
+
+.timezone {
+	display: flex;
+	height: 37px;
+	line-height: 37px;
+	padding: 0 0 0 11px;
+	border-top: 2px solid #474746;
+	border-bottom: 1px solid #474746;
+	font-size: 12px;
+	/* position: relative; */
+}
+
+.timezone p {
+	margin-left: 10px;
+	color: #794624;
+}

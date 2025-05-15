@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    info=""%>
+    info="Main template page"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
 </header>
 <main>
 <div id="container">
-
+여기에 필요한 내용을 기재하세요
 </div>
 </main>
 <footer>
