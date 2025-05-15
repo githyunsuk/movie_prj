@@ -6,8 +6,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-   	<link rel="stylesheet" href="http://localhost/movie_prj/common/css/reset.css">
-    <link rel="stylesheet" href="http://localhost/movie_prj/common/css/style.css">
+   	<link rel="stylesheet" href="http://localhost/movie_prj/css/reset.css">
+    <link rel="stylesheet" href="http://localhost/movie_prj/css/style.css">
 </head>
 <body>
 <div class="headerTop">
@@ -37,7 +37,7 @@
 	<ul class="nav_menu">
 		<li><a href="">영화</a></li>
 		<li><a href="">극장</a></li>
-		<li><a href="http://localhost/movie_prj/userpage/reservation.jsp"><strong>예매</strong></a></li>
+		<li><a href="http://localhost/movie_prj/reservation.jsp"><strong>예매</strong></a></li>
 	</ul>
 
 	<div class="search_wrap">

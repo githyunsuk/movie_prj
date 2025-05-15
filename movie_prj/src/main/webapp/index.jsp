@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="http://localhost/movie_prj/common/jsp/external_file.jsp"/>
+<c:import url="http://localhost/movie_prj/common/external_file.jsp"/>
 <style>
  #container{ min-height: 650px; margin-top: 30px; margin-left: 20px}
 </style>
@@ -17,7 +17,7 @@
 </head>
 <body>
 <header>
-<c:import url="http://localhost/movie_prj/common/jsp/header.jsp"/>
+<c:import url="http://localhost/movie_prj/common/header.jsp"/>
 </header>
 <main>
 <div id="container">
@@ -25,7 +25,7 @@
 </div>
 </main>
 <footer>
-<c:import url="http://localhost/movie_prj/common/jsp/footer.jsp"/>
+<c:import url="http://localhost/movie_prj/common/footer.jsp"/>
 </footer>
 </body>
 </html>

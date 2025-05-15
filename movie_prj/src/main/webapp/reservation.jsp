@@ -8,10 +8,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="http://localhost/movie_prj/common/css/reset.css">
+	href="http://localhost/movie_prj/css/reset.css">
 <link rel="stylesheet"
-	href="http://localhost/movie_prj/common/css/reservation.css">
-<c:import url="http://localhost/movie_prj/common/jsp/external_file.jsp" />
+	href="http://localhost/movie_prj/css/reservation.css">
+<c:import url="http://localhost/movie_prj/common/external_file.jsp" />
 
 <style>
 </style>
@@ -52,7 +52,7 @@
 </head>
 <body>
 	<header>
-		<c:import url="http://localhost/movie_prj/common/jsp/header.jsp" />
+		<c:import url="http://localhost/movie_prj/common/header.jsp" />
 	</header>
 
 	<main>
@@ -64,7 +64,7 @@
 						<div class="date_list">
 							<div class="btn btn_prev"></div>
 							<ul class="day">
-								<li>
+								<li >
 									<div class="day_list on">
 										<span>5월<br> <em>목</em></span> <strong>15</strong>
 									</div>
@@ -190,7 +190,7 @@
 	</main>
 
 	<footer>
-		<c:import url="http://localhost/movie_prj/common/jsp/footer.jsp" />
+		<c:import url="http://localhost/movie_prj/common/footer.jsp" />
 	</footer>
 </body>
 </html>
