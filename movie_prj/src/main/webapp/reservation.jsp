@@ -124,7 +124,8 @@
 							<div class="theater-info">2D | 2관 6층 (Laser) | 총 123석</div>
 							<div class="showtimes">
 								<div class="showtime">
-									20:50<br> <span>116석</span>
+									<a href="http://localhost/movie_prj/reservation_seat.jsp">
+									20:50<br> <span>116석</span></a>
 								</div>
 								<div class="showtime">
 									23:20<br> <span>122석</span>

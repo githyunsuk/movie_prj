@@ -81,7 +81,7 @@ main {
 }
 
 .desc li {
-	background: url("../img/sub/theater/sprite_icon.png");
+	background: url("../common/img/sub/theater/sprite_icon.png");
 	font-size: 13px;
 	background-position: 0 -158px;
 	padding-left: 20px;
@@ -94,12 +94,12 @@ main {
 }
 
 .btn_prev {
-	background: url("../img/sub/theater/sprite_btn.png");
+	background: url("../common/img/sub/theater/sprite_btn.png");
 	background-position: -117px -174px;
 }
 
 .btn_next {
-	background: url("../img/sub/theater/sprite_btn.png");
+	background: url("../common/img/sub/theater/sprite_btn.png");
 	background-position: -117px -155px;
 }
 
@@ -135,7 +135,7 @@ h5 {
 	height: 20px;
 	display: inline-block;
 	text-indent: -999em;
-	background: url("../img/sub/theater/sprite_btn.png") no-repeat -72px
+	background: url("../common/img/sub/theater/sprite_btn.png") no-repeat -72px
 		-62px;
 }
 
