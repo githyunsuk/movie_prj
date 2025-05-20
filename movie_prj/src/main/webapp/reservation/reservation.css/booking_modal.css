@@ -1,0 +1,101 @@
+.booking-modal {
+	display: none;
+	position: absolute;
+	z-index: 3000;
+	top: 300px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	max-width: 700px;
+	background: none; 
+}
+
+.booking-modal-content {
+	background-color: #fff;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	position: relative;
+	padding: 0;
+	overflow: hidden;
+}
+
+.modal-header {
+	background-color: #333;
+	color: white;
+	padding: 8px 12px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 14px;
+}
+
+.close-button {
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+.modal-content {
+	padding: 20px;
+}
+
+.warning {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.warning-text {
+	color: red;
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+
+.instruction {
+	text-align: center;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+.booking-number {
+	text-align: center;
+	font-size: 22px;
+	padding: 15px 0;
+	color: #666;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	margin: 20px 0;
+}
+
+.booking-details {
+	margin-bottom: 10px;
+}
+
+.booking-details strong {
+	display: inline-block;
+	width: 80px;
+}
+
+.note {
+	text-align: center;
+	color: #777;
+	margin: 20px 0 15px 0;
+	font-size: 14px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  margin-top: 30px;
+}
+
+.close-btn {
+  padding: 15px 50px;       /* 크기 키우기 */
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #DD2222;
+  color: white;
+  cursor: pointer;
+}
