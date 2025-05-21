@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    info="회원수정"%>
+    info="Main template page"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>YEONFLIX</title>
-<c:import url="http://localhost/movie_prj/common/external_file.jsp"/>
+<title>Insert title here</title>
+<c:import url="http://localhost/movie_prj/common/jsp/external_file.jsp"/>
 <style>
-
  #container{ min-height: 650px; margin-top: 30px; margin-left: 20px}
 
 
@@ -132,13 +131,14 @@ select {
     margin-top: 20px;
 }
 
+
 </style>
 <script type="text/javascript">
 </script>
 </head>
 <body>
 <header>
-<c:import url="http://localhost/movie_prj/common/header.jsp"/>
+<c:import url="http://localhost/movie_prj/common/jsp/header.jsp"/>
 </header>
 <main>
 <br><br>
@@ -155,7 +155,7 @@ select {
         <td>
           <div style="display: flex; align-items: center;">
             <div>
-              <img src="http://192.168.10.83/movie_prj/MyPage/images/default_img.png" class="profile-img" />
+              <img src="http://localhost/movie_prj/mypage/images/default_img.png" class="profile-img" />
               <input class="form-control" type="file" id="formFile" style="margin-top: 15px;">
               <label style="margin-top: 10px;">JPG, GIF, BMP 파일만 등록 가능합니다.</label>
             </div>
@@ -274,13 +274,14 @@ select {
       <button class="btn btn-secendary" style="width:80px">취소</button>
     </div>
      <div class="submit-delete" style="margin-top: 20px;">
-      <a href="http://localhost/movie_prj/MyPage/remove.jsp" class="btn btn-light" style="right: 50px;" >탈퇴</a>
+      <a href="http://localhost/movie_prj/mypage/remove.jsp" class="btn btn-light" style="right: 50px;" >탈퇴</a>
     </div>
   </div>
 	<br><br>
 </main>
+
 <footer>
-<c:import url="http://localhost/movie_prj/common/footer.jsp"/>
+<c:import url="http://localhost/movie_prj/common/jsp/footer.jsp"/>
 </footer>
 </body>
 </html>

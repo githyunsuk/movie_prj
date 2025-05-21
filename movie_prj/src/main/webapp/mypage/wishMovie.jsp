@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    info="기대되는영화"%>
+    info="Main template page"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>YEONFLIX</title>
-<c:import url="http://localhost/movie_prj/common/external_file.jsp"/>
+<title>Insert title here</title>
+<c:import url="http://localhost/movie_prj/common/jsp/external_file.jsp"/>
 <style>
-
-
+ 
   #container {
   min-height: 650px;
   margin: 30px auto; /* 위아래 여백 + 가운데 정렬 */
@@ -84,14 +83,14 @@
   }
  
  
- 
+
 </style>
 <script type="text/javascript">
 </script>
 </head>
 <body>
 <header>
-<c:import url="http://localhost/movie_prj/common/header.jsp"/>
+<c:import url="http://localhost/movie_prj/common/jsp/header.jsp"/>
 </header>
 <main>
 <div id="container">
@@ -107,9 +106,9 @@
       </div>
     </div>
     <br><br>
-    <a href="http://localhost/movie_prj/MyPage/wishMovie.jsp" class="btn btn-danger" style="width:230px; height:50px">기대되는 영화</a>
-    <a href="http://localhost/movie_prj/MyPage/WatchMovie.jsp" class="btn btn-light" style="width:230px; height:50px">내가 본 영화</a>
-    <a href="http://localhost/movie_prj/MyPage/ReviewMovie.jsp" class="btn btn-light" style="width:230px; height:50px">내가 쓴 평점</a>
+    <a href="http://localhost/movie_prj/mypage/wishMovie.jsp" class="btn btn-danger" style="width:230px; height:50px">기대되는 영화</a>
+    <a href="http://localhost/movie_prj/mypage/WatchMovie.jsp" class="btn btn-light" style="width:230px; height:50px">내가 본 영화</a>
+    <a href="http://localhost/movie_prj/mypage/ReviewMovie.jsp" class="btn btn-light" style="width:230px; height:50px">내가 쓴 평점</a>
   </div>
   
   <div class="content-area">
@@ -125,9 +124,10 @@
 
   </div>
 </div>
+
 </main>
 <footer>
-<c:import url="http://localhost/movie_prj/common/footer.jsp"/>
+<c:import url="http://localhost/movie_prj/common/jsp/footer.jsp"/>
 </footer>
 </body>
 </html>

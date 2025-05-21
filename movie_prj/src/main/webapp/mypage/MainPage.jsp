@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    info="마이페이지 메인"%>
+    info="Main template page"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>YEONFLIX</title>
-<c:import url="http://localhost/movie_prj/common/external_file.jsp"/>
+<title>Insert title here</title>
+<c:import url="http://localhost/movie_prj/common/jsp/external_file.jsp"/>
 <style>
-.profile-container {
+ .profile-container {
 	max-width: 800px;
 	margin: 40px auto;
 	font-family: 'Arial', sans-serif;
@@ -159,13 +159,14 @@
 	margin-top: 30px;
 	margin-left: 20px
 }
+
 </style>
 <script type="text/javascript">
 </script>
 </head>
 <body>
 <header>
-<c:import url="http://localhost/movie_prj/common/header.jsp"/>
+<c:import url="http://localhost/movie_prj/common/jsp/header.jsp"/>
 </header>
 <main>
 <div id="container">
@@ -174,21 +175,21 @@
     <img src="http://192.168.10.83/movie_prj/MyPage/images/default_img.png"  class="profile-img" />
     <div class="profile-info">
       <h2>유연수님 <span class="user-id">아이디: yeonsu2002</span><span class="user-nick"> 닉네임:운전연수</span></h2><br>
-        <a href="http://localhost/movie_prj/MyPage/loginFrm.jsp">✏️ 수정</a>
+        <a href="http://localhost/movie_prj/mypage/loginFrm.jsp">✏️ 수정</a>
    
     </div>
   </div>
 <div class="button-row">
  <div class="wish">
-    <a href="http://localhost/movie_prj/MyPage/wishMovie.jsp"  >
+    <a href="http://localhost/movie_prj/mypage/wishMovie.jsp"  >
     ❤️ <br><br>기대되는 영화<br><label>보고싶은 영화들을 미리<br> 담아두고 싶다면?</label></a>
 </div>
  <div class="watch">
-    <a href="http://localhost/movie_prj/MyPage/WatchMovie.jsp"  >
+    <a href="http://localhost/movie_prj/mypage/WatchMovie.jsp"  >
     📹<br><br>내가 본 영화<br><label>관람한 영화들을 한번에<br>모아 보고 싶다면?</label></a>
  </div>
 <div class="review">
-    <a href="http://localhost/movie_prj/MyPage/ReviewMovie.jsp"  >
+    <a href="http://localhost/movie_prj/mypage/ReviewMovie.jsp"  >
     📄<br><br>내가 쓴 평점<br><label>관람 후 내 감상평을 적어<br> 추억하고 싶다면?</label></a>
 </div>   
 </div>
@@ -298,9 +299,10 @@
     </div>
 </div>
 </div>
+
 </main>
 <footer>
-<c:import url="http://localhost/movie_prj/common/footer.jsp"/>
+<c:import url="http://localhost/movie_prj/common/jsp/footer.jsp"/>
 </footer>
 </body>
 </html>

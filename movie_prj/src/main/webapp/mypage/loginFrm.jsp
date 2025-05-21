@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    info="회원수정 로그인"%>
+    info="Main template page"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>YEONFLIX</title>
-<c:import url="http://localhost/movie_prj/common/external_file.jsp"/>
+<title>Insert title here</title>
+<c:import url="http://localhost/movie_prj/common/jsp/external_file.jsp"/>
 <style>
-#container{ min-height: 950px; margin-top: 30px; margin-left: 20px}
+ #container{ min-height: 950px; margin-top: 30px; margin-left: 20px}
  
 
 main {
@@ -27,13 +27,14 @@ main {
 .mb-5{ font-size:35px}
  
  
+
 </style>
 <script type="text/javascript">
 </script>
 </head>
 <body>
 <header>
-<c:import url="http://localhost/movie_prj/common/header.jsp"/>
+<c:import url="http://localhost/movie_prj/common/jsp/header.jsp"/>
 </header>
 <main>
 <div class="container">
@@ -62,7 +63,7 @@ main {
                 
                 <div class="col-12">
                   <div class="d-grid">
-                   <a href="http://localhost/movie_prj/MyPage/edit.jsp" class="btn btn-danger">Login</a>
+                   <a href="http://localhost/movie_prj/mypage/edit.jsp" class="btn btn-danger">Login</a>
                   </div>
                 </div>
               </div>
@@ -72,9 +73,10 @@ main {
 </div>        
 </div>        
 </div>
+
 </main>
 <footer>
-<c:import url="http://localhost/movie_prj/common/footer.jsp"/>
+<c:import url="http://localhost/movie_prj/common/jsp/footer.jsp"/>
 </footer>
 </body>
 </html>

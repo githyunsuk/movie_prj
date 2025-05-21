@@ -27,7 +27,7 @@
         <li><a href=""><img src="http://localhost/movie_prj/common/img/loginPassword.png" alt="">로그아웃</a></li>
         </c:otherwise>
         </c:choose>
-		<li><a href=""><img src="http://localhost/movie_prj/common/img/loginMember.png" alt="">마이페이지</a></li>
+		<li><a href="http://localhost/movie_prj/mypage/MainPage.jsp"><img src="http://localhost/movie_prj/common/img/loginMember.png" alt="">마이페이지</a></li>
 		<li><a href=""><img src="http://localhost/movie_prj/common/img/loginCustomer.png" alt="">고객센터</a></li>
 		</ul>
 	 </div>
