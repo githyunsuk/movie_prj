@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="http://localhost/movie_prj/common/css/reset.css">
-    <link rel="stylesheet" href="http://localhost/movie_prj/common/css/style.css">
-</head>
-<body>
+
 <div class="footer_wrap">
         <section class="policy">
             <ul class="policy_list">
@@ -57,5 +49,3 @@
             </section>
         </div>     
 </div>
-</body>
-</html>

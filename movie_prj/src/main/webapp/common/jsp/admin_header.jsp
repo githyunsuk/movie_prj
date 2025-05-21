@@ -31,8 +31,7 @@
     </div>
     <div class="menu-category">
         <div class="menu-title">상영관 관리</div>
-        <div class="menu-item"><span>▶</span>상영관 목록</div>
-        <div class="menu-item"><span>▶</span>상영관 등록</div>
+        <div class="menu-item"><a href="http://localhost/movie_prj/admin/theater/theater_manage.jsp"><span>▶</span>상영관 목록</a></div>
     </div>
     <div class="menu-category">
         <div class="menu-title">영화관리</div>
@@ -42,7 +41,7 @@
     </div>
     <div class="menu-category">
         <div class="menu-title">상영관리</div>
-        <div class="menu-item"><a href="http://localhost/movie_prj/admin/schedule/schedule.jsp"><span>▶</span>상영스케줄 목록</a></div>
+        <div class="menu-item"><a href="http://localhost/movie_prj/admin/schedule/schedule_manage.jsp"><span>▶</span>상영스케줄 목록</a></div>
     </div>
     <div class="menu-category">
         <div class="menu-title">문의관리</div>

@@ -2,14 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-   	<link rel="stylesheet" href="http://localhost/movie_prj/common/css/reset.css">
-    <link rel="stylesheet" href="http://localhost/movie_prj/common/css/style.css">
-</head>
-<body>
 <div class="headerTop">
 	<h1 class="logo"><a href="http://localhost/movie_prj/index.jsp"><img src="http://localhost/movie_prj/common/img/logo.png" alt=""></a></h1>
  	<div class="member">
@@ -52,5 +44,3 @@
  	</div>
 </div>
 </nav>  
-</body>
-</html>
