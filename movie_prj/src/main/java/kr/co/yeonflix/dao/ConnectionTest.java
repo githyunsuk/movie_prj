@@ -1,4 +1,4 @@
-package co.kr.yeonflix.dao;
+package kr.co.yeonflix.dao;
 
 import java.io.IOException;
 import java.sql.Connection;

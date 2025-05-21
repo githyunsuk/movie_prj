@@ -21,7 +21,7 @@ pageContext.setAttribute("tabs", tabs);
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>관리자 대시보드</title>
+<title>스케줄 관리</title>
 <c:import url="http://localhost/movie_prj/common/jsp/external_file.jsp" />
 <link rel="stylesheet"
 	href="http://localhost/movie_prj/common/css/admin.css">
@@ -44,6 +44,10 @@ pageContext.setAttribute("tabs", tabs);
 			$(".tab").removeClass("active");
 			$(".tab").eq(idx).addClass("active");
 		});
+		
+		$("#submit-btn").click(function(){
+			
+		})
 
 	});
 	
@@ -84,48 +88,7 @@ pageContext.setAttribute("tabs", tabs);
 					<td>상영종료</td>
 					<td><button class="btn-detail">자세히</button></td>
 				</tr>
-				<tr>
-					<td><a href="#">썬더볼츠</a></td>
-					<td>10:30</td>
-					<td>12:30</td>
-					<td>상영중</td>
-					<td><button class="btn-detail">자세히</button></td>
-				</tr>
-				<tr>
-					<td><a href="#">썬더볼츠</a></td>
-					<td>13:00</td>
-					<td>15:00</td>
-					<td>상영예정</td>
-					<td><button class="btn-detail">자세히</button></td>
-				</tr>
-				<tr>
-					<td><a href="#">썬더볼츠</a></td>
-					<td>15:30</td>
-					<td>17:30</td>
-					<td>상영중</td>
-					<td><button class="btn-detail">자세히</button></td>
-				</tr>
-				<tr>
-					<td><a href="#">마인크래프트</a></td>
-					<td>18:00</td>
-					<td>19:30</td>
-					<td>상영종료</td>
-					<td><button class="btn-detail">자세히</button></td>
-				</tr>
-				<tr>
-					<td><a href="#">마인크래프트</a></td>
-					<td>20:00</td>
-					<td>21:30</td>
-					<td>상영중</td>
-					<td><button class="btn-detail">자세히</button></td>
-				</tr>
-				<tr>
-					<td><a href="#">마인크래프트</a></td>
-					<td>22:00</td>
-					<td>23:30</td>
-					<td>상영종료</td>
-					<td><button class="btn-detail">자세히</button></td>
-				</tr>
+				
 			</tbody>
 		</table>
 		<div style="text-align: center;">
@@ -133,14 +96,15 @@ pageContext.setAttribute("tabs", tabs);
 		</div>
 	</div>
 </body>
+
 <div id="modal" class="modal">
 	<div class="modal-content">
 		<span class="close">&times;</span>
 		<h2>상영 등록</h2>
 		<div class="register-container">
-			<form>
+			<form action="schedule_process.jsp" id="schedule-form" name="schedule-form" method="get">
 				<div class="form-group form-inline">
-					<label for="title">제목</label> <select id="title">
+					<label for="title">제목</label> <select id="title" name="">
 						<option>썬더볼츠*</option>
 						<option>영화 A</option>
 						<option>영화 B</option>
@@ -157,7 +121,7 @@ pageContext.setAttribute("tabs", tabs);
 					<label for="time">시작 시간</label> <input type="time" id="time">
 				</div>
 				<div style="text-align: center;">
-					<button class="submit-btn">등록</button>
+					<button class="submit-btn" id="submit-btn">등록</button>
 				</div>
 			</form>
 		</div>
