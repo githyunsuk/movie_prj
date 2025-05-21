@@ -72,7 +72,7 @@
     <div class="card text-center">
     
   <div class="card-body">
-    <img src="http://localhost/movie_prj/mypage/images/%EA%B0%80%EC%A7%80%EB%A7%9D.gif"/>
+    <img src="http://localhost/movie_prj/common/img/%EA%B0%80%EC%A7%80%EB%A7%9D.gif"/>
     <h5 class="card-title">안녕히 가세요</h5>
   
     <input type="button" value="회원가입" class="btn btn-danger" style="width: 100px"/>

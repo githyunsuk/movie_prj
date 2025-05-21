@@ -70,7 +70,7 @@
     <div class="card text-center">
     
   <div class="card-body">
-    <img src="http://localhost/movie_prj/mypage/images/img_4.jpg"/>
+    <img src="http://localhost/movie_prj/common/img/img_4.jpg"/>
     <h5 class="card-title">YEONFLIX 회원탈퇴신청을 하시겠습니까?</h5>
     <h5 class="card-sec">YEONFLIX에 관한 궁금한 사항은 고객센터로 문의 주시면 신속히 해결해드리겠습니다.</h5>
   

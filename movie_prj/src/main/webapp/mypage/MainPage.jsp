@@ -172,7 +172,7 @@
 <div id="container">
 <div class="profile-container">
   <div class="profile-header">
-    <img src="http://192.168.10.83/movie_prj/MyPage/images/default_img.png"  class="profile-img" />
+    <img src="http://localhost/movie_prj/common/img/default_img.png"  class="profile-img" />
     <div class="profile-info">
       <h2>유연수님 <span class="user-id">아이디: yeonsu2002</span><span class="user-nick"> 닉네임:운전연수</span></h2><br>
         <a href="http://localhost/movie_prj/mypage/loginFrm.jsp">✏️ 수정</a>

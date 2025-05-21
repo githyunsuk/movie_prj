@@ -155,7 +155,7 @@ select {
         <td>
           <div style="display: flex; align-items: center;">
             <div>
-              <img src="http://localhost/movie_prj/mypage/images/default_img.png" class="profile-img" />
+              <img src="http://localhost/movie_prj/common/img/default_img.png" class="profile-img" />
               <input class="form-control" type="file" id="formFile" style="margin-top: 15px;">
               <label style="margin-top: 10px;">JPG, GIF, BMP 파일만 등록 가능합니다.</label>
             </div>

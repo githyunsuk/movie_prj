@@ -98,7 +98,7 @@
     <!-- 프로필 섹션 -->
     <div class="profile">
         <!-- 프로필 이미지 또는 아이콘 -->
-        <img src="http://192.168.10.83/movie_prj/MyPage/images/default_img.png"  class="profile-img" />
+        <img src="http://localhost/movie_prj/common/img/default_img.png"  class="profile-img" />
       <div class="profile-info">
         <h2>유연수님 </h2>
         <span class="profile-id">아이디: yeonsu2002</span>
