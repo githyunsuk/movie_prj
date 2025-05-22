@@ -40,7 +40,6 @@ public class DbConnection {
 			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/dbcp/3");
 			con = ds.getConnection();
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException se) {
 			se.printStackTrace();

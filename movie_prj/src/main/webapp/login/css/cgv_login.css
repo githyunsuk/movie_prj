@@ -1,0 +1,646 @@
+@charset "UTF-8";
+
+/* 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* 컨테이너 설정 */
+#container {
+    min-height: 650px;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* 로그인 영역 전체 설정 */
+.wrap-login {
+    width: 980px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* 로그인 섹션 */
+.sect-login {
+    width: 600px;
+}
+
+/* 탭 메뉴 */
+.tab-menu-round {
+    display: flex;
+    list-style: none;
+    border-bottom: 1px solid #d6d6d6;
+    margin-bottom: 0px;
+}
+
+.tab-menu-round li {
+    padding: 10px 20px;
+    border: 1px solid #d6d6d6;
+    border-bottom: none;
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab-menu-round li.on {
+    background-color: #fb4357;
+}
+
+.tab-menu-round li.on a {
+    color: white;
+}
+
+.tab-menu-round a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* 로그인 박스 */
+.box-login {
+    height: 550px;
+    padding: 30px;
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}
+
+.txt_wrap {
+    margin-bottom: 20px;
+}
+
+.txt_wrap p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* 로그인 입력 폼 */
+.login {
+    margin-bottom: 15px;
+}
+
+.login input {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    border: 1px solid #d6d6d6;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* CAPTCHA 영역 */
+.captcha {
+    margin-bottom: 15px;
+}
+
+.captcha_box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.captcha_img {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.captcha_img img {
+    max-width: 100%;
+    height: auto;
+}
+
+.btn_refresh, .btn_sound, .btn_img {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 10px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.sp {
+    font-size: 14px;
+    text-indent: 0;
+    text-decoration: underline;
+}
+
+.input_row {
+    margin-top: 10px;
+}
+
+.input_box {
+    display: block;
+    position: relative;
+}
+
+.input_box label {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    transition: all 0.2s;
+    font-size: 14px;
+    display: none;
+}
+
+.input_box input {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* 로그인 버튼 */
+#submit {
+    width: 100%;
+    height: 45px;
+    background-color: #fb4357;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+/* 아이디 저장 체크박스 */
+.save-id {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.save-id input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* 로그인 옵션 (아이디 찾기, 비밀번호 찾기) */
+.login-option {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.login-option a {
+    color: #666;
+    text-decoration: underline;
+    font-size: 14px;
+    margin: 0 10px;
+}
+
+.login-option a:hover {
+    text-decoration: underline;
+}
+
+/* 네이버 로그인 버튼 */
+.naver-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn_loginNaver {
+    display: inline-block;
+}
+
+.btn_loginNaver img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 회원가입 안내 섹션 */
+.sect-loginguide {
+    width: 350px;
+}
+
+.box-useguide {
+    padding: 30px;
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.box-useguide strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.box-useguide span {
+    display: block;
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.round {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.red {
+    background-color: #fb4357;
+    color: white;
+}
+
+.black {
+    background-color: #333;
+    color: white;
+}
+
+.round span {
+    color: inherit;
+    margin-bottom: 0;
+}
+
+/* 광고 섹션 */
+.sect-loginad {
+    width: 350px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+/* 반응형 조정 */
+@media (max-width: 980px) {
+    .wrap-login {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .sect-login,
+    .sect-loginguide,
+    .sect-loginad {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* ---------------------------------------------------------비회원 예매 UI*/
+/* 전체 폼 스타일 */
+#nonMemberReserveForm {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Malgun Gothic', sans-serif;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+legend {
+  background-color: #f2f2f2;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* 안내 메시지 */
+.info_notice {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+ 	font-size: 13px;
+}
+
+.info_notice p {
+  margin: 0;
+}
+
+/* 폼 행 공통 스타일 */
+.form_row {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.form_row label {
+  width: 150px;
+  font-size: 14px;
+  color: #333;
+}
+
+.form_row input[type="text"],
+.form_row input[type="password"],
+.form_row select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+/* 이메일 입력 영역 스타일 */
+.email_wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.email_wrap input[type="text"] {
+  width: 150px;
+}
+
+.email_wrap span {
+  margin: 0 5px;
+}
+
+.email_wrap select {
+  width: 130px;
+  height: 37px;
+}
+
+#emailCustomDomain {
+  width: 130px;
+}
+
+/* 버튼 스타일 */
+.btn_sub {
+  background-color: #fff;
+  border: 1px solid #ff5555;
+  color: #ff5555;
+  padding: 8px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 12px;
+  height: 37px;
+}
+
+.form_submit {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn_submit {
+  background-color: #ff5555;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+.btn_submit:hover {
+  background-color: #ff3333;
+}
+
+/* 인증번호 입력 영역 */
+#auth {
+  width: 100px;
+}
+
+/* 비밀번호 입력 영역 */
+#pw, #pw_confirm {
+  width: 250px;
+}
+
+/* 생년월일 입력 영역 */
+#birth {
+  width: 250px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .form_row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .form_row label {
+    margin-bottom: 8px;
+  }
+  
+  .email_wrap {
+    flex-wrap: wrap;
+  }
+  
+  .btn_sub {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+
+/*---------------------------------------------------- 비회원 예매 확인 UI*/
+/* 비회원 예매 확인 페이지 전용 스타일 */
+.guest-reservation * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Malgun Gothic', sans-serif;
+}
+
+.guest-reservation {
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.guest-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.guest-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.guest-info-text {
+  margin-bottom: 20px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.guest-tab-container {
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+
+.guest-tab-header {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.guest-tab-header div {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.guest-tab-header div.guest-active {
+  background-color: #fff;
+}
+
+.guest-tab-content {
+  display: flex;
+}
+
+.guest-tab-left, .guest-tab-right {
+  flex: 1;
+  padding: 30px;
+}
+
+.guest-tab-right {
+  border-left: 1px solid #e0e0e0;
+}
+
+.guest-form-row {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.guest-form-row:after {
+  content: '';
+  display: block;
+  border-bottom: 1px solid #eee;
+  position: absolute;
+  width: 100%;
+  bottom: -12px;
+}
+
+.guest-form-row:last-child:after {
+  display: none;
+}
+
+.guest-form-row label {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 14px;
+}
+
+.guest-form-row input[type="text"],
+.guest-form-row input[type="password"],
+.guest-form-row select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+.guest-form-row input[type="text"]:focus,
+.guest-form-row input[type="password"]:focus,
+.guest-form-row select:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.guest-phone-wrap {
+  display: flex;
+  gap: 5px;
+}
+
+.guest-phone-wrap select {
+  width: 80px;
+}
+
+.guest-phone-wrap input {
+  flex: 1;
+}
+
+.guest-email-wrap {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.guest-email-wrap input:first-child {
+  flex: 1;
+}
+
+.guest-email-wrap span {
+  margin: 0 5px;
+}
+
+.guest-email-wrap select {
+  width: 130px;
+}
+
+.guest-btn {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+.guest-btn-primary {
+  background-color: #ff5554;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  display: block;
+}
+
+.guest-btn-outline {
+  border: 1px solid #000;
+  background-color: #fff;
+  color: #000;
+  padding: 10px 20px;
+  width: 100%;
+  display: block;
+}
+
+.guest-text-center {
+  text-align: center;
+}
+
+.guest-notice-box {
+  padding: 20px;
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.guest-divider {
+  border-top: 1px solid #eee;
+  margin: 15px 0;
+}

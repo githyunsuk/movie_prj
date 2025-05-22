@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <div class="headerTop">
 	<h1 class="logo"><a href="http://localhost/movie_prj/index.jsp"><img src="http://localhost/movie_prj/common/img/logo.png" alt=""></a></h1>
  	<div class="member">
@@ -12,11 +13,11 @@
 		%>
 		<c:choose>
   	    <c:when test="${flag}">
-      	<li><a href=""><img src="http://localhost/movie_prj/common/img/loginPassword.png" alt="">로그인</a></li>
-      	<li><a href=""><img src="http://localhost/movie_prj/common/img/loginJoin.png" alt="">회원가입</a></li>
+      	<li><a href="http://localhost/movie_prj/login/loginFrm.jsp"><img src="http://localhost/movie_prj/common/img/loginPassword.png" alt="">로그인</a></li>
+      	<li><a href="http://localhost/movie_prj/login/isMemberChk.jsp"><img src="http://localhost/movie_prj/common/img/loginJoin.png" alt="">회원가입</a></li>
         </c:when>
         <c:otherwise>
-        <li><a href=""><img src="http://localhost/movie_prj/common/img/loginPassword.png" alt="">로그아웃</a></li>
+        <li><a href="http://localhost/movie_prj/login/controller/logout.jsp"><img src="http://localhost/movie_prj/common/img/loginPassword.png" alt="">로그아웃</a></li>
         </c:otherwise>
         </c:choose>
 		<li><a href="http://localhost/movie_prj/mypage/MainPage.jsp"><img src="http://localhost/movie_prj/common/img/loginMember.png" alt="">마이페이지</a></li>
