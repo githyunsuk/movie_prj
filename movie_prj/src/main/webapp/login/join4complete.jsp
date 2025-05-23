@@ -512,26 +512,26 @@ $(function() {
         </div>
         <h2 class="join4_success-title">회원가입을 완료했습니다!</h2>
         <p class="join4_success-message">
-            환영합니다! ${userName}님의 회원가입이 성공적으로 완료되었습니다.<br>
+            환영합니다!<strong style="color: #FF6B01"> <c:out value="${memberVO.userName }" /></strong>님의 회원가입이 성공적으로 완료되었습니다.<br>
             영화예매 서비스의 다양한 혜택을 지금 바로 이용해보세요.
         </p>
 
         <div class="join4_user-info">
             <div class="join4_info-row">
                 <div class="join4_info-label">아이디</div>
-                <div class="join4_info-value">${userId}</div>
+                <div class="join4_info-value"><c:out value="${memberVO.memberId }"/> </div>
             </div>
             <div class="join4_info-row">
-                <div class="join4_info-label">이름</div>
-                <div class="join4_info-value">${userName}</div>
+                <div class="join4_info-label">닉네임</div>
+                <div class="join4_info-value"><c:out value="${memberVO.nickName }"/> </div>
             </div>
             <div class="join4_info-row">
                 <div class="join4_info-label">이메일</div>
-                <div class="join4_info-value">${email}</div>
+                <div class="join4_info-value"><c:out value="${memberVO.email }"/> </div>
             </div>
             <div class="join4_info-row">
                 <div class="join4_info-label">전화번호</div>
-                <div class="join4_info-value">${phone}</div>
+                <div class="join4_info-value"><c:out value="${memberVO.tel }"/> </div>
             </div>
         </div>
 

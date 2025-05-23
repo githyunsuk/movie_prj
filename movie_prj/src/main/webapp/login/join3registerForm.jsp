@@ -762,7 +762,7 @@ function aJaxSubmit(){
         <!-- 전화번호 수신여부 추가 -->
         <div class="join3_form-group">
             <div class="join3_checkbox-group">
-                <input type="checkbox" id="smsConsent" name="smsConsent" value="Y">
+                <input type="checkbox" id="smsConsent" name="smsConsent" value="Y"> <!-- null은 "N"로 받을거 -->
                 <label for="smsConsent" class="join3_checkbox-label">SMS 수신 동의 (할인 및 이벤트 정보를 받아보실 수 있습니다)</label>
             </div>
         </div>

@@ -1,3 +1,14 @@
+<%@page import="java.net.URLEncoder"%>
+<%@page import="lombok.extern.log4j.Log4j2"%>
+<%@page import="javax.servlet.jsp.tagext.TryCatchFinally"%>
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="kr.co.yeonflix.member.MemberService"%>
+<%@page import="kr.co.yeonflix.member.MemberDTO"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.File" %>
@@ -7,151 +18,102 @@
 <%@ page import="org.apache.commons.fileupload.FileItem" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
-<!DOCTYPE html>
+<%-- <jsp:useBean id="member" class="kr.co.yeonflix.member.MemberDTO" scope="page" /> --%>
+
 <%
-	//multipart/form-data 는 request.getParameter() 로 못가져온다.
-    // multipart/form-data 체크
-    boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-    
-    // 텍스트 필드값 저장을 위한 변수들
-    String userId = "";
-    String password = "";
-    String userName = "";
-    String email = "";
-    String phone = "";
-    String emailConsent = "N"; // 기본값 N
-    String smsConsent = "N"; // 기본값 N
-    String profileImageName = ""; // 업로드된 파일 이름
-    
-    if (isMultipart) {
-        // 파일 업로드를 위한 설정
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        
-        // 저장될 임시 경로 설정
-        String tempDir = application.getRealPath("/temp");
-        factory.setRepository(new File(tempDir));
-        
-        // 업로드 핸들러 생성
-        ServletFileUpload upload = new ServletFileUpload(factory);
-        
-        int maxSize = 1024 * 1024 * 10; //업로드용량
-        upload.setSizeMax(maxSize);
-        
-        try {
-            // 모든 폼 필드 파싱
-            List<FileItem> items = upload.parseRequest(request);
-            Iterator<FileItem> iter = items.iterator();
-            
-            // 업로드 파일이 저장될 경로
-            String uploadPath = application.getRealPath("/uploads/profiles");
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdirs(); // 디렉토리가 없으면 생성
-            }
-            
-            while (iter.hasNext()) {
-                FileItem item = iter.next();
-                
-                if (item.isFormField()) {
-                    // 일반 폼 필드 처리 (텍스트 데이터)
-                    String fieldName = item.getFieldName();
-                    String fieldValue = item.getString("UTF-8"); // 인코딩 지정
-                    
-                    switch (fieldName) {
-                        case "userId":
-                            userId = fieldValue;
-                            break;
-                        case "password":
-                            password = fieldValue;
-                            break;
-                        case "userName":
-                            userName = fieldValue;
-                            break;
-                        case "email":
-                            email = fieldValue;
-                            break;
-                        case "phone":
-                            phone = fieldValue;
-                            break;
-                        case "emailConsent":
-                            emailConsent = fieldValue; // "Y"값이 올 것임
-                            break;
-                        case "smsConsent":
-                            smsConsent = fieldValue; // "Y"값이 올 것임
-                            break;
-                    }
-                } else {
-                    // 파일 필드 처리 (프로필 이미지)
-                    String fieldName = item.getFieldName();
-                    
-                    if ("profileImage".equals(fieldName) && item.getSize() > 0) {
-                        // 중복 방지를 위한 파일명 처리 (UUID 사용)
-                        String originalName = new File(item.getName()).getName();
-                        String fileExt = originalName.substring(originalName.lastIndexOf('.'));
-                        String savedName = UUID.randomUUID().toString() + fileExt;
-                        File uploadedFile = new File(uploadPath, savedName);
-                        
-                        // 파일 저장
-                        item.write(uploadedFile);
-                        profileImageName = savedName;
-                    }
-                }
-            }
-            
-            // 이름 마스킹 처리
-            String maskedName = "";
-            if(userName != null && userName.length() > 1){
-                if(userName.length() == 2){
-                    maskedName = userName.charAt(0) + "*";
-                } else {
-                    maskedName = userName.charAt(0) + "*" + userName.charAt(userName.length() - 1);
-                }
-            } else {
-                maskedName = userName;
-            }
-            
-            // 이메일 마스킹 처리
-            String maskedEmail = "";
-            if(email != null){
-                int atIndex = email.indexOf("@");
-                if(atIndex > 2){
-                    String prefix = email.substring(0, 2); //첫두글자만
-                    String stars = "*".repeat(atIndex - 2);
-                    String domain = email.substring(atIndex);
-                    maskedEmail = prefix + stars + domain;
-                } else {
-                    maskedEmail = email; //너무 짧아서.. 그럴리없겠지만
-                }
-            }
-            
-            // 세션에 데이터 저장
-            session.setAttribute("userId", userId);
-            session.setAttribute("userName", userName);
-            session.setAttribute("maskedName", maskedName);
-            session.setAttribute("email", email);
-            session.setAttribute("maskedEmail", maskedEmail);
-            session.setAttribute("phone", phone);
-            session.setAttribute("emailConsent", emailConsent);
-            session.setAttribute("smsConsent", smsConsent);
-            session.setAttribute("profileImageName", profileImageName);
-            
-            // 서비스호출: 위 변수들을 매개변수로 던져서 체크 및 추가 처리
-            // 이부분은 실제 서비스 로직으로 대체
-            
-            // 다음 페이지로 포워딩
-            request.setAttribute("name", maskedName);
-            request.setAttribute("email", maskedEmail);
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login/join4complete.jsp");
-            dispatcher.forward(request, response);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            // 에러 처리 페이지로 리다이렉트
-            response.sendRedirect(request.getContextPath() + "/error.jsp");
-        }
-    } else {
-        // multipart/form-data가 아닌 경우 처리
-        response.sendRedirect(request.getContextPath() + "/error.jsp");
-    }
+//멤버객체
+MemberDTO memberVO = new MemberDTO(); 
+
+MultipartRequest multi = null;
+int fileMaxSize = 10 * 1024 * 1024; // 10MB
+String savePath = application.getRealPath("/common/userProfiles"); 
+File saveDir = new File(savePath);
+if (!saveDir.exists()) {
+    saveDir.mkdirs(); // 디렉토리 생성
+}
+
+if (ServletFileUpload.isMultipartContent(request)) { //multipart 요청이냐?
+	//MultipartRequest 이거 쓰자... FileItem 이거 너무 어렵다. 
+	//싹 고쳐야함 
+	System.out.println("이것은 MultipartContent이다 ");
+
+	
+	try{
+		multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
+	} catch (Exception e){
+		e.printStackTrace();
+		out.println("<script>alert('처리 중 오류가 발생했습니다'); history.back();</script>");
+	}
+
+	String memberId = multi.getParameter("userId");
+	String password = multi.getParameter("password");
+	String nickName = multi.getParameter("nickName");
+	String birthday = multi.getParameter("birthday");
+	String userName = multi.getParameter("userName");
+	String email = multi.getParameter("email");
+	String emailConsent = multi.getParameter("emailConsent");
+	String phone = multi.getParameter("phone");
+	String smsConsent = multi.getParameter("smsConsent");
+	
+	memberVO.setMemberId(memberId);
+	memberVO.setMemberPwd(password);
+	memberVO.setNickName(nickName);
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+	memberVO.setBirth(LocalDate.parse(birthday, formatter));
+	memberVO.setUserName(userName);
+	memberVO.setEmail(email);
+	memberVO.setIsEmailAgreed(emailConsent);
+	memberVO.setTel(phone);
+	memberVO.setIsSmsAgreed(smsConsent);
+
+	//나머지 memberVO 채우기
+	memberVO.setCreatedAt(LocalDateTime.now()); //생성시각
+	memberVO.setIsActive("Y"); //활동유저인가, 기본값 : Y
+	memberVO.setMemberIp(request.getRemoteAddr()); //접속 IP
+
+	//이미지 처리 
+	/*  
+		multi.getFile("profileImage")
+			-> 파일을 서버의 임시 디렉토리에 저장하고, 해당 파일 객체(File) 를 반환
+	*/
+	File profileFile = multi.getFile("profileImage");
+	String newProfile = null;
+	
+	/*
+		profileFile.exists()
+			-> 객체는 있지만, 서버 임시 경로에 그 파일이 정상적으로 저장되었는지까지 확인하는 것.	
+	*/
+		if(profileFile != null && profileFile.exists()){ //업로드 한 사진이 있고, 그 사진이 임시저장까지 됐냐? 
+			System.out.println("임시저장한 절대경로: " + profileFile.getAbsolutePath());
+		
+			String ext = profileFile.getName().substring(profileFile.getName().lastIndexOf(".")+1).toUpperCase();
+			if(ext.equals("PNG") || ext.equals("JPG") || ext.equals("GIF") || ext.equals("JPEG")){
+				String profileName = System.currentTimeMillis() + "_" + profileFile.getName();
+				File uploadedProfile = new File(savePath + "/" +  profileName);
+	
+				profileName = URLEncoder.encode(profileName, "UTF-8");
+				memberVO.setPicture(profileName);
+			}
+		} else if(profileFile == null) { //업로드한 사진이 없다면?
+			memberVO.setPicture("default_img.png");
+		}
+	
+	//서비스 호출
+	MemberService memberService = new MemberService();
+	boolean result = memberService.joinMember(memberVO);
+
+	if (result) {
+		// 성공시 완료 페이지로 이동
+		request.setAttribute("memberVO", memberVO);
+		request.getRequestDispatcher("/login/join4complete.jsp").forward(request, response);
+		//response.sendRedirect(request.getContextPath() + "/login/join4complete.jsp");
+	} else {
+		// 실패시 에러 메시지와 함께 이전 페이지로
+		out.println("<script>alert('회원가입에 실패했습니다. 다시 시도해주세요.'); history.back();</script>");
+	}
+
+
+} 
+
+
 %>

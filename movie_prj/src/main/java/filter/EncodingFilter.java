@@ -1,29 +1,25 @@
 package filter;
 
+import javax.servlet.*;
 import java.io.IOException;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-
-// 모든 요청과 응답의 한글 처리를 위해 필터를 추가해서 UTF-8설정 => web.xml에 등록해야 
 public class EncodingFilter implements Filter {
 
-	public void init(FilterConfig filterConfig) {}
-	
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		//한글 처리: 요청과 응답에 UTF-8 설정하기
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		//다음 필터 or 서블릿을 호출
-		chain.doFilter(request, response);
-	}
-	
-	public void destroy() {}
+    @Override
+    public void init(FilterConfig filterConfig) {}
+
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+            throws IOException, ServletException {
+
+        // 요청 파라미터의 한글 깨짐 방지 (POST 방식)
+        req.setCharacterEncoding("UTF-8");
+        //res.setCharacterEncoding("UTF-8"); // 이미 JSP에서 <%%>로 설정중, 얘 있으면 css가  html/text로 읽혀서 적용안됨 
+
+        // 필터 체인 계속 진행
+        chain.doFilter(req, res);
+    }
+
+    @Override
+    public void destroy() {}
 }
