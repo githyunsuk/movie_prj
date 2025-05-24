@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import kr.co.yeonflix.dao.DbConnection;
@@ -24,6 +25,63 @@ public class MemberDAO {
 	}//getInstance();
 	
 //--------------------------------------------------------------------------------------------------------------------	
+	//로그인 
+	public MemberDTO selectMemberByIdPwd(String memberId, String memberPwd) throws SQLException {
+		
+		MemberDTO memberVO = null;
+		
+		DbConnection dbCon = DbConnection.getInstance();
+		Connection con = null;
+		PreparedStatement getMemberPstmt = null;
+		PreparedStatement getRolePstmt = null;
+		ResultSet rs = null;
+		
+		int userIdx = -1;
+		
+		try {
+			con = dbCon.getDbConn();
+			
+			String getMember = " SELECT user_idx, member_id, member_pwd, nick_name, birth, email, picture FROM member WHERE member_id = ? AND member_pwd = ? ";
+			
+			getMemberPstmt = con.prepareStatement(getMember);
+			getMemberPstmt.setString(1, memberId);
+			getMemberPstmt.setString(2, memberPwd);
+			
+			rs = getMemberPstmt.executeQuery();
+			
+			memberVO = new MemberDTO();
+			if(rs.next()) {
+				memberVO.setUserIdx(rs.getInt("user_idx"));
+				memberVO.setMemberId(rs.getString("member_id"));
+				memberVO.setMemberPwd(rs.getString("member_pwd"));
+				memberVO.setNickName(rs.getString("nick_name"));
+				memberVO.setBirth( rs.getDate("birth").toLocalDate());
+				memberVO.setEmail(rs.getString("email"));
+				memberVO.setPicture(rs.getString("picture"));
+				
+				userIdx = rs.getInt("user_idx");
+			}
+			
+			if (userIdx > 0) {
+				String getRole = "	SELECT role_name FROM role WHERE role_idx = ?	";
+				getRolePstmt = con.prepareStatement(getRole);
+				getRolePstmt.setInt(1, userIdx);
+				
+				rs = getRolePstmt.executeQuery();
+				if(rs.next()) {
+					memberVO.setRole(Role.valueOf( rs.getString("role_name")));
+				}
+			}//if
+			
+		} finally {
+			dbCon.dbClose(rs, getRolePstmt, null); 
+		 	dbCon.dbClose(null, getMemberPstmt, con); 
+		}
+		
+		return memberVO;
+	}
+	
+	
 	//비회원가입
 	
 	//운영자가입
@@ -108,7 +166,7 @@ public class MemberDAO {
 	    
 		} catch (SQLException e) {
 			if(con != null) {
-				con.rollback(); //실패-> 롤백
+				con.rollback(); //실패함녀 롤백 
 			}
 			e.printStackTrace();
 			throw e;

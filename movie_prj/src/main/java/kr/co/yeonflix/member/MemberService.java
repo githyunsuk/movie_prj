@@ -13,6 +13,17 @@ public class MemberService {
     }
     
     /**
+     * 로그인 
+     */
+    public MemberDTO loginMember(String memberId, String memberPwd) {
+    	
+    	
+    	
+    	memberDAO.sele
+    }
+    
+    
+    /**
      * 회원가입 처리
      * @param memberDTO 회원 정보
      * @return 성공 여부

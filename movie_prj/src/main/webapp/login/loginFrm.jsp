@@ -18,6 +18,10 @@
 	$(function(){
 		loginFrmHtml = $(".box-login.login_1408").html(); //DOM이 모두 준비된 후에 백업
 		
+		$("#form2_capcha").on("submit", function(event){
+			event.preventDefault(); //폼 기본전송 x 
+		});
+		
 		$("#memberLoginBtn").on("click", function(event){
 			event.preventDefault();
 			$(".box-login.login_1408").empty().html(loginFrmHtml); //저장해놨던 원래html불러옴
@@ -46,11 +50,16 @@
 		
 		
 		
-		liClassChangeToOn();
+		liClassChangeToOn(); //뭐였는지 까먹었지만 css관련 함수 
+		
+		refreshCaptcha(); //자동입력방지문자 갱신 함수 
+		
+		login(); //로그인 관련 모음 함수 
+		
+
 		
 		
-		
-	});
+	});//--------------------------------------------------------------------------------ready
 	
 	function nonMemberLoginFrm(){
 		//비회원 예매 버튼 클릭시
@@ -191,7 +200,58 @@
 			$(this).addClass('on');
 		});
 	}
+	 
+	/* 자동입력 방지문자 리프레쉬 버튼 클릭 */
+	function refreshCaptcha(){
+		let refreshNumber = "";
+		while(refreshNumber.length < 6){
+			let randomNumb = Math.floor(Math.random() * 10);
+			refreshNumber = refreshNumber + randomNumb;
+		}
+		$(".refresh-number").val(refreshNumber);
+	}
 	
+	/* 로그인 함수 */
+	function login(){
+		let loginBtn = document.getElementById("submit");
+		
+		//자동입력방지문자 확인 
+		loginBtn.addEventListener("click", function(){
+			let txtCaptcha = $("#txtCaptcha").val();
+			let refreshNumber = $(".refresh-number").val();
+			if(txtCaptcha !== refreshNumber){
+				alert("자동입력 방지 문자를 확인 후 입력해주세요");
+				refreshCaptcha(); //갱신 
+			} else {
+				alert("자동입력 방지 문자 옳다.");
+				
+			}
+			//로그인 
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/login/controller/loginProcess.jsp",
+				data:$(this).serialize(), /* memberId, memberPwd */
+				success:function(response){
+					if(response.trim() === "success"){
+						alert("로그인 성공");
+	          location.href = "/index.jsp"; 
+					} else {
+	          alert("아이디 또는 패스워드가 맞지 않습니다. 확인 후 입력해주세요.");
+	          $("#txtUserId, #txtPwd1").val("");
+	          refreshCaptcha();
+	        }
+				},
+				error:function(xhr, status, error){
+					console.log(xhr.status());
+	        alert("서버 오류: " + error);
+	      }
+				
+			});
+			
+		});
+		
+		
+	}
 	
 	
 </script>
@@ -229,8 +289,8 @@
 	            </div>
 	            
 	            <div class="login">
-	              <input type="text" title="아이디" id="txtUserId" name="txtUserId" value="" placeholder="아이디">
-	              <input type="password" title="패스워드" id="txtPwd1" name="txtPwd1" placeholder="비밀번호">
+	              <input type="text" title="아이디" id="txtUserId" name="memberId" value="" placeholder="아이디">
+	              <input type="password" title="패스워드" id="txtPwd1" name="memberPwd" placeholder="비밀번호">
 	            </div>
 	            
 <!-- 캡차 영역 시ㅣ작-->
@@ -238,25 +298,23 @@
 	              <div class="captcha_box" id="image_captcha">
 	                <span class="captcha_img">
 	                  <div id="imageCatpcha">
-	                    <img src="https://www.cgv.co.kr/user/login/find-account-captcha-random.aspx?result=7UP1lgj71DlzKGQbmEe1hw%3D%3D">
+	                    <!-- <img src="https://www.cgv.co.kr/user/login/find-account-captcha-random.aspx?result=7UP1lgj71DlzKGQbmEe1hw%3D%3D"> -->
+	                   	<input type="text" style="border-color: white;" class="refresh-number" value="" readonly oncopy="return false;">
 	                  </div>
 	                </span>
-	                <a href="javascript:;" id="captchaReLoad" class="btn_refresh"><span class="sp">새로고침</span></a>
+	                <a href="javascript:refreshNumber();" id="captchaReLoad" class="btn_refresh"><span class="sp">새로고침</span></a>
 	              </div>
-	              
-	              <input name="ctl00$PlaceHolderContent$hdfNum" type="hidden" id="ctl00_PlaceHolderContent_hdfNum">      
-	              <input name="ctl00$PlaceHolderContent$hdaudio" type="hidden" id="ctl00_PlaceHolderContent_hdaudio">          
 	              
 	              <div class="input_row" id="chptcha_area">
 	                <span class="input_box">
 	                  <label for="chptcha" class="lbl" id="label_chptcha_area">자동입력 방지문자</label>
-	                  <input type="text" id="txtCaptcha" name="txtCaptcha" placeholder="자동입력 방지문자" class="int">
+	                  <input type="text" id="txtCaptcha" name="txtCaptcha" placeholder="자동입력 방지문자 (앵간하면 captcha쓰자)" class="int">
 	                </span>
 	              </div>
 	            </div>
 <!-- 캡차 영역 끝-->
 	            
-	            <button type="submit" id="submit" title="로그인"><span>로그인</span></button>
+	            <button type="button" id="submit" title="로그인"><span>로그인</span></button>
 	            <div class="save-id"><input type="checkbox" id="save_id"><label for="save_id">아이디 저장</label></div>
 	            <div class="login-option">
 	              <a href="http://localhost/movie_prj/login/isMemberChk.jsp" >아이디 찾기</a>
