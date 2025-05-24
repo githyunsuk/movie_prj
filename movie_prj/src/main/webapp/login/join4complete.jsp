@@ -408,7 +408,7 @@ $(function() {
     
     // Login button click
     $("#loginBtn").on("click", function() {
-        window.location.href = "${pageContext.request.contextPath}/login/jsp/login.jsp";
+        location.href = "${pageContext.request.contextPath}/login/loginFrm.jsp";
     });
     
     // Function to create confetti effect
@@ -509,6 +509,9 @@ $(function() {
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
               <polyline points="22 4 12 14.01 9 11.01"></polyline>
             </svg>
+            
+        <!-- flash attribute 전략   -->
+        <c:set var="memberVO" value="${sessionScope.memberVO }" /> 
         </div>
         <h2 class="join4_success-title">회원가입을 완료했습니다!</h2>
         <p class="join4_success-message">
@@ -534,6 +537,7 @@ $(function() {
                 <div class="join4_info-value"><c:out value="${memberVO.tel }"/> </div>
             </div>
         </div>
+        <c:remove var="memberVO" scope="session"/>
 
         <button type="button" class="join4_button" id="loginBtn">로그인 하기</button>
 

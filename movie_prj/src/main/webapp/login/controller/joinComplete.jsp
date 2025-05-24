@@ -18,7 +18,8 @@
 <%@ page import="org.apache.commons.fileupload.FileItem" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
-<%-- <jsp:useBean id="member" class="kr.co.yeonflix.member.MemberDTO" scope="page" /> --%>
+<%@ page import="java.nio.file.Files" %>
+<%@ page import="java.nio.file.StandardCopyOption" %>
 
 <%
 //멤버객체
@@ -26,23 +27,27 @@ MemberDTO memberVO = new MemberDTO();
 
 MultipartRequest multi = null;
 int fileMaxSize = 10 * 1024 * 1024; // 10MB
-String savePath = application.getRealPath("/common/userProfiles"); 
+
+// 그냥 이게 제일 낫다.server
+String savePath = "C:\\dev\\movie\\userProfiles"; //고정시켜버려, server.xml에 설정중 
+
 File saveDir = new File(savePath);
+
 if (!saveDir.exists()) {
-    saveDir.mkdirs(); // 디렉토리 생성
+    boolean created = saveDir.mkdirs(); // 디렉토리 생성
+    System.out.println("디렉토리 생성 결과: " + created + ", 경로: " + savePath);
 }
 
 if (ServletFileUpload.isMultipartContent(request)) { //multipart 요청이냐?
 	//MultipartRequest 이거 쓰자... FileItem 이거 너무 어렵다. 
-	//싹 고쳐야함 
-	System.out.println("이것은 MultipartContent이다 ");
-
 	
 	try{
 		multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
+		System.out.println("MultipartRequest 생성 완료, 저장 경로: " + savePath);
 	} catch (Exception e){
 		e.printStackTrace();
 		out.println("<script>alert('처리 중 오류가 발생했습니다'); history.back();</script>");
+		return; // 에러 시 처리 중단
 	}
 
 	String memberId = multi.getParameter("userId");
@@ -72,31 +77,46 @@ if (ServletFileUpload.isMultipartContent(request)) { //multipart 요청이냐?
 	memberVO.setMemberIp(request.getRemoteAddr()); //접속 IP
 
 	//이미지 처리 
-	/*  
-		multi.getFile("profileImage")
-			-> 파일을 서버의 임시 디렉토리에 저장하고, 해당 파일 객체(File) 를 반환
-	*/
 	File profileFile = multi.getFile("profileImage");
-	String newProfile = null;
+	String originalFileName = multi.getOriginalFileName("profileImage");
+	String savedFileName = multi.getFilesystemName("profileImage");
 	
-	/*
-		profileFile.exists()
-			-> 객체는 있지만, 서버 임시 경로에 그 파일이 정상적으로 저장되었는지까지 확인하는 것.	
-	*/
-		if(profileFile != null && profileFile.exists()){ //업로드 한 사진이 있고, 그 사진이 임시저장까지 됐냐? 
-			System.out.println("임시저장한 절대경로: " + profileFile.getAbsolutePath());
+	System.out.println("원본 파일명: " + originalFileName);
+	System.out.println("저장된 파일명: " + savedFileName);
+	System.out.println("프로필 파일 객체: " + profileFile);
+	
+	if(profileFile != null && profileFile.exists() && originalFileName != null && !originalFileName.trim().isEmpty()){ 
+		System.out.println("업로드된 파일 경로: " + profileFile.getAbsolutePath());
+		System.out.println("파일 크기: " + profileFile.length() + " bytes");
 		
-			String ext = profileFile.getName().substring(profileFile.getName().lastIndexOf(".")+1).toUpperCase();
-			if(ext.equals("PNG") || ext.equals("JPG") || ext.equals("GIF") || ext.equals("JPEG")){
-				String profileName = System.currentTimeMillis() + "_" + profileFile.getName();
-				File uploadedProfile = new File(savePath + "/" +  profileName);
-	
-				profileName = URLEncoder.encode(profileName, "UTF-8");
-				memberVO.setPicture(profileName);
+		String ext = originalFileName.substring(originalFileName.lastIndexOf(".")+1).toUpperCase();
+		System.out.println("파일 확장자: " + ext);
+		
+		if(ext.equals("PNG") || ext.equals("JPG") || ext.equals("GIF") || ext.equals("JPEG")){
+			// MultipartRequest가 이미 파일을 저장했으므로 savedFileName 사용
+			if(savedFileName != null) {
+				// URL 인코딩은 필요시에만 적용 (보통 DB 저장시에는 원본명 사용)
+				memberVO.setPicture(savedFileName);
+				System.out.println("DB에 저장할 파일명: " + savedFileName);
+			} else {
+				memberVO.setPicture("default_img.png");
+				System.out.println("파일 저장 실패, 기본 이미지 사용");
 			}
-		} else if(profileFile == null) { //업로드한 사진이 없다면?
+		} else {
 			memberVO.setPicture("default_img.png");
+			System.out.println("지원하지 않는 파일 형식, 기본 이미지 사용");
 		}
+	} else { 
+		memberVO.setPicture("default_img.png");
+		System.out.println("업로드된 파일이 없음, 기본 이미지 사용");
+	}
+	
+	// 최종 파일 확인
+	if(!memberVO.getPicture().equals("default_img.png")) {
+		File finalFile = new File(savePath + "/" + memberVO.getPicture());
+		System.out.println("최종 파일 존재 여부: " + finalFile.exists());
+		System.out.println("최종 파일 경로: " + finalFile.getAbsolutePath());
+	}
 	
 	//서비스 호출
 	MemberService memberService = new MemberService();
@@ -104,16 +124,11 @@ if (ServletFileUpload.isMultipartContent(request)) { //multipart 요청이냐?
 
 	if (result) {
 		// 성공시 완료 페이지로 이동
-		request.setAttribute("memberVO", memberVO);
-		request.getRequestDispatcher("/login/join4complete.jsp").forward(request, response);
-		//response.sendRedirect(request.getContextPath() + "/login/join4complete.jsp");
+		session.setAttribute("memberVO", memberVO);
+		response.sendRedirect(request.getContextPath() + "/login/join4complete.jsp");
 	} else {
 		// 실패시 에러 메시지와 함께 이전 페이지로
 		out.println("<script>alert('회원가입에 실패했습니다. 다시 시도해주세요.'); history.back();</script>");
 	}
-
-
 } 
-
-
 %>

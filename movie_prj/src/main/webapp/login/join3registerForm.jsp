@@ -730,7 +730,7 @@ function aJaxSubmit(){
         
        	<div class="join3_form-group">
 	        <label for="birthday" class="join3_form-label">생년월일</label>
-	        <input type="text" id="birthday" name="birthday" class="join3_form-input" placeholder="예: 19900621" maxlength="8">
+	        <input type="text" id="birthday" name="birthday" class="join3_form-input" placeholder="예: 20001225" maxlength="8" min="8">
 	        <div id="birthdayValidation" class="join3_validation-message"></div>
 	        <div class="join3_help-text">8자리 숫자로 입력해주세요 (연월일 순서)</div>
         </div>

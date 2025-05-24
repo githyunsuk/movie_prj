@@ -216,34 +216,37 @@
 		let loginBtn = document.getElementById("submit");
 		
 		//자동입력방지문자 확인 
-		loginBtn.addEventListener("click", function(){
+		loginBtn.addEventListener("click", function(e){
+			e.preventDefault(); //제출 기본동작 방지
+			
 			let txtCaptcha = $("#txtCaptcha").val();
 			let refreshNumber = $(".refresh-number").val();
+			
 			if(txtCaptcha !== refreshNumber){
 				alert("자동입력 방지 문자를 확인 후 입력해주세요");
 				refreshCaptcha(); //갱신 
-			} else {
-				alert("자동입력 방지 문자 옳다.");
-				
-			}
+				return; //까먹지마라 
+			} 
+			
 			//로그인 
 			$.ajax({
 				type:"POST",
 				url:"${pageContext.request.contextPath}/login/controller/loginProcess.jsp",
-				data:$(this).serialize(), /* memberId, memberPwd */
+				data:$("#form2_capcha").serialize(), /* memberId, memberPwd */
 				success:function(response){
 					if(response.trim() === "success"){
 						alert("로그인 성공");
-	          location.href = "/index.jsp"; 
-					} else {
+	          location.href = "${pageContext.request.contextPath}/index.jsp"; 
+					} else if (response.trim() === "fail"){
 	          alert("아이디 또는 패스워드가 맞지 않습니다. 확인 후 입력해주세요.");
 	          $("#txtUserId, #txtPwd1").val("");
 	          refreshCaptcha();
 	        }
 				},
 				error:function(xhr, status, error){
-					console.log(xhr.status());
-	        alert("서버 오류: " + error);
+			    console.log("에러 상태 코드:", xhr.status);
+			    console.log("에러 응답:", xhr.responseText);
+			    alert("서버 오류(" + xhr.status + "): " + error);
 	      }
 				
 			});
@@ -280,7 +283,7 @@
       <div class="box-login login_1408">
         <h3 class="hidden">회원 로그인</h3>
         <div class="loginFormDiv">
-	        <form id="form2_capcha" method="post" action="#" novalidate="novalidate">
+	        <form id="form2_capcha" method="post" action="" novalidate="novalidate">
 	          <fieldset>
 	<!--        <legend style="display: none">회원 로그인</legend> -->
 	            <div class="txt_wrap">               
@@ -302,7 +305,7 @@
 	                   	<input type="text" style="border-color: white;" class="refresh-number" value="" readonly oncopy="return false;">
 	                  </div>
 	                </span>
-	                <a href="javascript:refreshNumber();" id="captchaReLoad" class="btn_refresh"><span class="sp">새로고침</span></a>
+	                <a href="javascript:refreshCaptcha();" id="captchaReLoad" class="btn_refresh"><span class="sp">새로고침</span></a>
 	              </div>
 	              
 	              <div class="input_row" id="chptcha_area">

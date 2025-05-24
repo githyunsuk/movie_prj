@@ -1,3 +1,4 @@
+<%@page import="kr.co.yeonflix.member.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     info="Main template page"%>
@@ -17,11 +18,12 @@
 </head>
 <body>
 <header>
-<c:import url="http://localhost/movie_prj/common/jsp/header.jsp"/>
+<%-- <c:import url="http://localhost/movie_prj/common/jsp/header.jsp"/> --%>
+<jsp:include page="common/jsp/header.jsp" />
 </header>
 <main>
 <div id="container">
-여기에 필요한 내용을 기재하세요
+
 </div>
 </main>
 <footer>
